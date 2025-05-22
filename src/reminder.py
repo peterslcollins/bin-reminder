@@ -24,7 +24,6 @@ def send_notification(bin_info, cfg):
         msg = "🟢 Bins to put out tomorrow:\n" + "\n".join(
             f"{b}: {bin_info[b]['next_collection']}" for b in bins_due
         )
-        append_log(NOTIFY_LOG, f"Sent notification: {msg}")
         subject = "🚮 Bin Reminder: Take the bins out tomorrow!"
         send_email(
             subject,
@@ -33,6 +32,7 @@ def send_notification(bin_info, cfg):
             cfg["email"]["recipient"],
             cfg["email"]["app_password"],
         )
+        append_log(NOTIFY_LOG, f"Sent notification: {msg}")
     else:
         msg = "🟡 No bins due tomorrow. Upcoming collections:\n" + "\n".join(
             f"{b}: {info['next_collection']}" for b, info in bin_info.items()
@@ -44,10 +44,8 @@ def run_reminder():
     cfg = load_config()
 
     try:
-        bin_info = scrape_bin_collection(cfg["address"])
-        # Logic to check if any bins are due tomorrow:
-        # For now, let's just print and log notification once per day if bins are due
         if not was_notified_today(NOTIFY_LOG):
+            bin_info = scrape_bin_collection(cfg["address"])
             send_notification(bin_info, cfg)
         else:
             print("Notification already sent today.")
