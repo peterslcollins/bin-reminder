@@ -40,7 +40,7 @@ def send_notification(bin_info, cfg):
         append_log(NOTIFY_LOG, f"No notification sent. {msg}")
 
 
-def main():
+def run_reminder():
     cfg = load_config()
 
     try:
@@ -54,7 +54,3 @@ def main():
     except Exception as e:
         append_log(ERROR_LOG, f"Error: {str(e)}")
         print(f"Error occurred: {e}")
-
-
-if __name__ == "__main__":
-    main()
