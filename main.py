@@ -1,5 +1,3 @@
-# bin_reminder.py
-
 from src.reminder import run_reminder
 
 def main():
