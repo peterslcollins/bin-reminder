@@ -13,7 +13,7 @@ def scrape_bin_collection(address):
 
     try:
         driver.get(
-            "https://www.merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/waste-calendar25/"
+            "https://www.merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/waste-calendar26/"
         )
 
         # Enter address
